@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ContactsApp.MainPage">
+    <StackLayout Padding="10" Spacing="10">
+        <Label Text="Add New Alarm" FontSize="Header"/>
+
+        <Label Text="Alarm Name"/>
+        <Entry Text="{Binding Name}" Placeholder="wake the frick up"/>
+
+        <Label Text="Alarm Time"/>
+        <TimePicker Time="{Binding AlarmTimeSpan}" HorizontalOptions="Start"/>
+        <Label Text="{Binding Path=NextAlarmCountdown, StringFormat='Time until next alarm: {0:hh\\:mm\\:ss}'}"/>
+
+        <Label Text="Volume" FontSize="Medium"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Label Text="Not a peep" HorizontalOptions="Start" Grid.Column="0"/>
+            <Label Text="A reasonable volume" HorizontalOptions="Center" Grid.Column="1"/>
+            <Label Text="Crank that shi" HorizontalOptions="End" Grid.Column="2"/>
+        </Grid>
+        <Slider Minimum="0" Maximum="1" Value="{Binding Volume}"/>
+
+        <StackLayout Orientation="Horizontal">
+            <Button Text="Save Alarm" Command="{Binding SaveAlarmCommand}"/>
+        </StackLayout>
+
+        <ActivityIndicator IsRunning="{Binding IsBusy}"/>
+    </StackLayout>
+</ContentPage>
